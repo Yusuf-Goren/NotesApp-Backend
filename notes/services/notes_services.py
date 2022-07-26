@@ -23,7 +23,7 @@ def create_note(current_user, request):
     note = Note(title, text, user_id=current_user.id)
     db.session.add(note)
     db.session.commit()
-    return {'message': 'Blog created!'}
+    return {'message': 'Note created!'}
 
 
 def edit_note(current_user, note_id, request):
@@ -33,7 +33,7 @@ def edit_note(current_user, note_id, request):
         dict(title=title_updated, text=text_updated)
     )
     db.session.commit()
-    return {'message': 'Blog edited!'}
+    return {'message': 'Note edited!'}
 
 
 def find_note(current_user, request):

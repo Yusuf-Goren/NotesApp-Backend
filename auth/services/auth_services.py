@@ -16,12 +16,13 @@ def submit(request):
 
     user = User.query.filter(
         or_(User.username == username, User.email == email)).first()
-    if(user.username == username):
-        abort(make_response(
-            jsonify({"message": "There is a user with this username!!!"}), BAD_REQUEST))
-    if(user.email == email):
-        abort(make_response(
-            jsonify({"message": "You already registered with this e-mail"}), BAD_REQUEST))
+    if(user):
+        if(user.username == username or username == ""):
+            abort(make_response(
+                jsonify({"message": "There is a user with this username!!!"}), BAD_REQUEST))
+        if(user.email == email or email == ""):
+            abort(make_response(
+                jsonify({"message": "You already registered with this e-mail"}), BAD_REQUEST))
 
     password = generate_password_hash(
         request.json['userPassword'], method='sha256')
