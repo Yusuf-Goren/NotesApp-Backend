@@ -15,3 +15,9 @@ def login():
 def submit():
     response = auth_services.submit(request)
     return response
+
+
+@AUTH.get("/logout")
+def logout():
+    response = auth_services.logout()
+    return response

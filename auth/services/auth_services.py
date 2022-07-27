@@ -1,6 +1,6 @@
 
 from asyncio import constants
-from flask import jsonify, make_response, request, abort
+from flask import Response, jsonify, make_response, request, abort
 from sqlalchemy import or_
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
@@ -55,3 +55,7 @@ def login(request):
 
     print("Invalid identity")
     return "Invalid identity "
+
+
+def logout():
+    return "You logged off"
